@@ -1,4 +1,4 @@
-﻿<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"> </script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"> </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
@@ -51,7 +51,7 @@
         <div class="text-white">
           <h1 class="mb-3">Hoşgeldiniz</h1>
           <h4 class="mb-3" id="manager_name"></h4>
-           <a class="btn btn-outline-light btn-lg" href="#!" role="button" data-toggle="modal" data-target="#modalRegisterForm" >Giriş Yap</a>
+           <a class="btn btn-outline-light btn-lg" id="btn_entry" href="#!" role="button" data-toggle="modal" data-target="#modalRegisterForm" >Giriş Yap</a>
         </div>
       </div>
     </div>
@@ -190,14 +190,35 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <cfoutput><button class="btn btn-success"  id="btn_submit" type="button">Sign up</button></cfoutput>
+        <cfoutput><button class="btn btn-success"  id="btn_submit" type="button" style="display:none">Sign up</button></cfoutput>
       </div>
     </div>
   </cfform>
   </div>
 </div>
 
-  
+  <script>
+      const validateEmail = (email) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      };
+
+
+      const validate = () => {
+          const email = $('#email').val();
+        
+          if (validateEmail(email)) {
+              $("#btn_submit").show();
+          }
+          else {
+            $("#btn_submit").hide();
+          }  
+          return false;
+        }
+
+        $('#email').on('input', validate);
+  </script>
 
 <script>
    
@@ -242,6 +263,7 @@
                                   $('#name').val('');
                                   $('#email').val('');
                                   $('#pass').val('');
+                                  $("#btn_entry").hide();
                             }
                         });
                   }
