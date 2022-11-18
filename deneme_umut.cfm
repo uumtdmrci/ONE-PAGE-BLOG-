@@ -45,13 +45,28 @@
         </a>
      </div>
   </div> --->
-  <div class="p-5 text-center bg-image jumbotron" style="background-image: url('https://img.freepik.com/free-photo/abstract-smoke-wallpaper-background-desktop_53876-128257.jpg');height: 400px">
+  <div class="p-5 text-center bg-image jumbotron" style="background-image: url('https://img.freepik.com/free-photo/abstract-smoke-wallpaper-background-desktop_53876-128257.jpg');height: 400px" id="open_1">
     <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
       <div class="d-flex justify-content-center align-items-center h-100">
         <div class="text-white">
           <h1 class="mb-3">Hoşgeldiniz</h1>
           <h4 class="mb-3" id="manager_name"></h4>
-           <a class="btn btn-outline-light btn-lg" id="btn_entry" href="#!" role="button" data-toggle="modal" data-target="#modalRegisterForm" >Giriş Yap</a>
+            <button class="btn btn-light" onclick="go_left(1)"> < </button>
+              <a class="btn btn-outline-light btn-lg" id="btn_entry" href="#!" role="button" data-toggle="modal" data-target="#modalRegisterForm" >Giriş Yap</a>
+            <button class="btn btn-light" onclick="go_right(1)"> > </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-5 text-center bg-image jumbotron" style="display:none;background-image: url('https://i.pinimg.com/originals/dc/2f/6a/dc2f6ad1c01f4a58073a9b235c5f7095.jpg');height: 400px" id="open_2">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+          <h1 class="mb-3">Hoşgeldiniz</h1>
+          <h4 class="mb-3" id="manager_name"></h4>
+            <button class="btn btn-light" onclick="go_left(2)"> < </button>
+              <a class="btn btn-outline-light btn-lg" id="btn_entry" href="#!" role="button" data-toggle="modal" data-target="#modalRegisterForm" >Giriş Yap</a>
+            <button class="btn btn-light" onclick="go_right(2)"> > </button>
         </div>
       </div>
     </div>
@@ -278,8 +293,6 @@
           <cfoutput>
             $("##picture_#aa#").tooltip();
 
-
-
             $("##detail_open_#aa#").click(function () {
               $("##text_detail_#aa#").html("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ");
                 $("##detail_open_#aa#").hide();
@@ -295,5 +308,29 @@
          </cfloop>
        })
   </script>
-
+  
+<!--- Modal hareketi için --->
+<script>
+  function go_left(durum) {
+      var n1 =1;
+      var n2 = parseInt(durum);
+      var r = n2 - n1;
+        if(r != 0)
+        {
+          $("#open_"+ durum).css('display','none');
+          $("#open_"+ r).show(); 
+        }
+      } 
  
+  function go_right(durum) {
+      var n1 =1;
+      var n2 = parseInt(durum);
+      var r = n1 + n2;
+      var r2 = n2 - n1;
+       if(r2== 0)
+        {
+          $("#open_"+ durum).css('display','none');
+          $("#open_"+ r).show();
+        }
+  }   
+</script>
